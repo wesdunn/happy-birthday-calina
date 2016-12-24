@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calina&rsquo;s Mad Lips</title>
+  <title>Christmas Madlib Funtimes Awesometown!</title>
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,23 +13,34 @@
   <link rel="stylesheet" href="assets/styles.css" type="text/css">
 </head>
 <body>
-
-  <form action="" id="mad-libs">
-    <label for="word">
-      Enter <span class="prompt"></span>
-    </label>
-    <input type="text" name="word" id="word" autofocus="autofocus" autocomplete="off" tabindex="1" />
-  </form>
-
-  <article id="story">
-    <div class="content"></div>
-
-    <footer>
-      <a href="#" class="start-over">Good job. Now go do it again!</a>
-    </footer>
-  </article>
-
+  <!-- <canvas class="snow" id="snow"></canvas> -->
+  <div id="wrapper">
+  <div class="" id="picker">
+      <h1>Ho! Ho! Ho! What story do you want to mad-lib???</h1>
+      <div id="button-container">
+        <button class="button -green" value="1">The Night Before Christmas</button>
+        <button class="button -red" value="2">Rudolph, The Red-Nosed Raindeer</button>
+      </div>
+    </div>
+  
+    <form action="" class="hidden" id="mad-libs">
+      <label for="word">
+        Enter <span class="prompt"></span>
+      </label>
+      <input type="text" name="word" id="word" autofocus="autofocus" autocomplete="off" tabindex="1" />
+    </form>
+  
+    <article id="story">
+      <div class="content"></div>
+  
+      <footer>
+        <a href="#" class="start-over">Good job. Now go do it again!</a>
+      </footer>
+    </article>
+    <section class="sky"></section>
+  </div>
   <script src="assets/stories.js"></script>
   <script src="assets/madlibs.js"></script>
+  <script src="assets/snow.js"></script>
 </body>
 </html>

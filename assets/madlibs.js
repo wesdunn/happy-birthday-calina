@@ -92,8 +92,15 @@
   var template,
       story;
 
-  function init(evt) {
-    story    = new Story(window.STORY);
+  function pickStory(pick) {
+    init(pick.target.value == 1 ? window.STORY1 : window.STORY2);
+  }
+
+  function init(picked) {
+    document.getElementById('picker').classList.add('hidden');
+    document.getElementById('mad-libs').classList.remove('hidden');
+
+    story    = new Story(picked);
     template = new UI(story.getCurrentBlank() || '');
     template.onSubmit = enteredWord;
 
@@ -117,6 +124,6 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  document.getElementById('picker').addEventListener('click', pickStory);
 
 })(window, document);
