@@ -12,7 +12,7 @@ window.STORY1 =
   'When out on the lawn there arose such a {{Noise:clatter}},'+ '</br>' +
   'I sprang from the bed to see what was the matter.'+ '</br>' +
   'Away to the window I flew like a flash,'+ '</br>' +
-  'Tore open the shutters and threw up the {{Noun:sash}}.'+ '</br>' +
+  'Tore open the shutters and threw up the {{Noun (thing):sash}}.'+ '</br>' +
   '</br>'+
   'The moon on the breast of the {{Adjective:new-fallen}} snow'+ '</br>' +
   'Gave the lustre of mid-day to objects below.'+ '</br>' +
@@ -78,7 +78,7 @@ window.STORY2 =
   'All of the other reindeer'+ '</br>' +
   'used to {{Verb:laugh}} and call him names.'+ '</br>' +
   'They never let {{Adjective:poor}} Rudolph'+ '</br>' +
-  'join in any reindeer games.'+ '</br>' +
+  'join in any {{Adjective:reindeer}} games.'+ '</br>' +
   '</br>'+
   'Then one {{Adjective (-y):foggy}} Christmas Eve'+ '</br>' +
   'Santa came to say:'+ '</br>' +
@@ -89,3 +89,37 @@ window.STORY2 =
   'as they shouted out with glee,'+ '</br>' +
   'Rudolph the {{Color:red}}-nosed reindeer,'+ '</br>' +
   'you\'ll go {{Direction:down}} in history';
+
+  window.STORY3 =
+  `Frosty the Snowman, was a {{Adjective:jolly}} {{Adjective (feeling):happy}} soul,</br>
+  With a {{Noun:corn cob}} pipe and a {{Noun:button}} nose, and {{Number:two}} eyes made of coal.</br>
+  </br>
+  Frosty the Snowman, is a {{Noun:fairytale}}, they say.</br>
+  He was made of snow, but the children know he came to {{Verb:life}} one day.</br>
+  </br>
+  There must have been some magic in that old {{Adjective:silk}} hat they found,</br>
+  </br>
+  For when they placed it on his head, he began to {{Verb:dance}} around!</br>
+  </br>
+  Oh, Frosty, the Snowman, was as {{Mood:alive}} as he could be;</br>
+  and the children say he could {{Verb:laugh}} and play,</br>
+  just the same as you and me.</br>
+  </br>
+  Thumpety thump, thump, thumpety thump, thump,</br>
+  look at Frosty go.</br>
+  </br>
+  Thumpety thump, thump, thumpety thump, thump,</br>
+  over the hills of snow.</br>
+  </br>
+  Frosty the Snowman, knew the sun was hot that day,</br>
+  so he said, "Let's {{Verb:run}}, and we'll have some {{Noun:fun}} now, before I melt away."</br>
+  </br>
+  Down to the {{Place:village}}, with a {{Noun (thing):broomstick}} in his hand,</br>
+  Running here and there, all around the square,</br>
+  sayin', "Catch me if you can."</br>
+  </br>
+  He led them down the {{Place:streets of town}}, right to the traffic cop;</br>
+  and only paused a moment, when he heard him holler, "Stop!"</br>
+  </br>
+  For Frosty, the Snowman, had to hurry on his way,</br>
+  But he {{Verb (-ed):waved}} goodbye, sayin' "Don't you cry, I'll be back again some day.</br>`

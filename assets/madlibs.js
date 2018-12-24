@@ -93,7 +93,8 @@
       story;
 
   function pickStory(pick) {
-    init(pick.target.value == 1 ? window.STORY1 : window.STORY2);
+    var stories = [window.STORY1, window.STORY2, window.STORY3];
+    init(stories[pick.target.value - 1]);
   }
 
   function init(picked) {
