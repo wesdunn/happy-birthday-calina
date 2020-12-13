@@ -1,7 +1,7 @@
 ;(function(window, document, undefined) {
 
   // UI
-
+  // Handles prompt input, display, etc
   function UI(initial_prompt) {
     this.updatePrompt = function(type) {
       if (type.match(/^another/)) {
@@ -43,8 +43,13 @@
   }
 
   // Story
-
+  // handles input story parsing, progression of prompts
+  // address bar hash = handling reloads, maybe sharing
+  // TODO: add sharing
   function Story(text) {
+    // splits input text based on {{ partOfSpeech:wordToReplace }}
+    // parsed is an array based on the split. 
+    // ALL ODD INDICES are the text to replace
     var MUSTACHE_REGEX = /{{\s?([^}]*)\s?}}/g,
         parsed = text.split(MUSTACHE_REGEX),
         blanks = [],
@@ -96,7 +101,9 @@
     var stories = [window.STORY1, window.STORY2, window.STORY3];
     init(stories[pick.target.value - 1]);
   }
-
+  // TODO: add story selection to window.location.hash
+  // this will allow sharing/reloads to auto-select the story
+  // from the hash
   function init(picked) {
     document.getElementById('picker').classList.add('hidden');
     document.getElementById('mad-libs').classList.remove('hidden');
