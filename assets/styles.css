@@ -100,7 +100,7 @@ h1 {
         font-weight: 700;
       }
 
-  #mad-libs input[name="word"] {
+  #mad-libs input[id="word"] {
     border: 0 none;
     border-bottom: 1px solid #999;
     padding: 0.5em 0 0.125em 0.125em;

@@ -3,13 +3,18 @@
   // UI
   // Handles prompt input, display, etc
   function UI(initial_prompt) {
-    this.updatePrompt = function(type) {
+    this.updatePrompt = function(blank) {
+      var parts = blank.split(':');
+      var type = parts[0],
+          replacer = parts[1];
+
       if (type.match(/^another/)) {
         var article = '';
       } else {
         var article = 'a' + (type.match(/^[aeio]/i) ? 'n' : '');
       }
       prompt.innerHTML = article + ' <em class="word-class">' + type + '</em>';
+      input.name = replacer;
     };
 
     this.clearInput = function() {
@@ -28,7 +33,7 @@
 
     form.addEventListener('submit', function(evt) {
       evt.preventDefault();
-      this.onSubmit.call(this, input.value);
+      this.onSubmit.call(this, { 'name': input.name, 'value': input.value });
       this.clearInput();
     }.bind(this));
 
@@ -53,16 +58,29 @@
     var MUSTACHE_REGEX = /{{\s?([^}]*)\s?}}/g,
         parsed = text.split(MUSTACHE_REGEX),
         blanks = [],
+        // Should be a key/value of "blanks" to allow single user input
+        // for multiple story replacements
+        // could get these from odd numbered indices in `blanks`
+        tags = new Map(),
         current_blank = 1;
 
     this.fillBlank = function(fill_with) {
-      blanks.push(fill_with);
+      tags.set(fill_with.name, fill_with.value);
+      blanks.push(fill_with.value);
       current_blank += 2;
     };
 
     this.getCurrentBlank = function() {
       var blank = parsed[current_blank];
-      return blank ? blank.split(':')[0] : false;
+      if (!blank) return false;
+      var replacer = blank.split(':')[1];
+      // Already filled for this...
+      if (tags.has(replacer)) {
+        blanks.push(tags.get(replacer));
+        current_blank += 2;
+        blank = parsed[current_blank];
+      }
+      return blank ? blank : false;
     };
 
     this.compile = function() {
@@ -93,18 +111,18 @@
   }
 
   // App
-
+  const stories = [window.STORY1, window.STORY2, window.STORY3];
   var template,
-      story;
+      story,
+      storySelected;
 
   function pickStory(pick) {
-    var stories = [window.STORY1, window.STORY2, window.STORY3];
-    init(stories[pick.target.value - 1]);
+    storySelected = pick.target.value;
+    init(stories[storySelected - 1]);
   }
-  // TODO: add story selection to window.location.hash
-  // this will allow sharing/reloads to auto-select the story
-  // from the hash
+
   function init(picked) {
+    if (!picked) window.location = '';
     document.getElementById('picker').classList.add('hidden');
     document.getElementById('mad-libs').classList.remove('hidden');
 
@@ -120,18 +138,28 @@
     }
   }
 
-  function enteredWord(word) {
-    story.fillBlank(word);
+  function enteredWord(filler) {
+    story.fillBlank(filler);
     var next = story.getCurrentBlank();
 
     if (next) {
       template.updatePrompt(next);
     } else {
+      if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?story=${storySelected}`;
+        window.history.pushState({path:newurl},'',newurl);
+      }
       window.location.hash = story.encode();
       template.revealStory(story.compile());
     }
   }
 
-  document.getElementById('picker').addEventListener('click', pickStory);
+  var params = new URLSearchParams(window.location.search);
+  var hash = window.location.hash.substr(1);
+  if (params.has('story') && hash) {
+    init(stories[parseInt(params.get('story')) - 1])
+  } else {
+    document.getElementById('picker').addEventListener('click', pickStory);
+  }
 
 })(window, document);
